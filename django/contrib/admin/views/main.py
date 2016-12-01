@@ -64,7 +64,7 @@ class ChangeList(object):
         if to_field and not model_admin.to_field_allowed(request, to_field):
             raise DisallowedModelAdminToField("The field %s cannot be referenced." % to_field)
         self.to_field = to_field
-        self.params = dict(request.GET.items())
+        self.params = request.GET.copy()
         if PAGE_VAR in self.params:
             del self.params[PAGE_VAR]
         if ERROR_FLAG in self.params:
